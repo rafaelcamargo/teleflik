@@ -27,6 +27,16 @@ var config = {
       }
     }
   },
+  'uglify': {
+    options: {
+      mangle: false
+    },
+    vendor: {
+      files: {
+        [project.paths.scripts.dist.vendor.bundle]: project.paths.scripts.dist.vendor.bundle
+      }
+    }
+  },
   'cssmin': {
     bundle: {
       files: {
@@ -116,6 +126,9 @@ var config = {
     }
   },
   'watch': {
+    options: {
+      livereload: true,
+    },
     scripts: {
       files: project.paths.scripts.source.files,
       tasks: ['jshint', 'concat:source']
@@ -123,6 +136,10 @@ var config = {
     styles: {
       files: project.paths.styles.source.files,
       tasks: ['stylus']
+    },
+    templates: {
+      files: project.paths.templates.source.files,
+      tasks: ['html2js', 'concat:source']
     },
     copy: {
       files: [
@@ -149,6 +166,7 @@ module.exports = function(grunt){
     'html2js',
     'jshint',
     'concat',
+    'uglify:vendor',
     'stylus',
     'cssmin',
     'imagemin'
