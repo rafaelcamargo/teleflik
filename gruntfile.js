@@ -137,6 +137,10 @@ var config = {
       files: project.paths.styles.source.files,
       tasks: ['stylus']
     },
+    images: {
+      files: project.paths.images.source.files,
+      tasks: ['imagemin']
+    },
     templates: {
       files: project.paths.templates.source.files,
       tasks: ['html2js', 'concat:source']

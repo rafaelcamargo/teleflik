@@ -1,0 +1,39 @@
+@require '_variables'
+@require '_mixins'
+
+.topbar-container
+  background-color $color-ruby
+
+.topbar-content
+  position relative
+  margin 0 auto
+  padding 16px 0
+  width 90%
+  color $color-white
+  clearfix()
+  h1
+    position absolute
+    top 0
+    right 0
+    left 0
+    margin 0
+    padding 0 35px
+    color $color-white
+    font-size $font-size-md
+    line-height 57px
+    text-align center
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    box-sizing(border-box)
+  .icon
+    position relative
+    font-size $font-size-xl
+    z-index $layer-lowest
+  .menu-container
+    float right
+    .menu-item-container
+      float right
+
+.topbar-back-trigger
+  float left
