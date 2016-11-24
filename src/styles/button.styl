@@ -1,0 +1,26 @@
+@require '_variables'
+@require '_mixins'
+
+.button
+  margin 0
+  padding 0
+  min-width 40px
+  min-height 40px
+  background-color $color-grey
+  color $color-grey-dark
+  font-size $font-size-sm
+  text-align center
+  line-height 40px
+  border-width 1px
+  border-style solid
+  border-color $color-grey
+  border-radius(3px)
+  box-sizing(border-box)
+  &.button-primary
+    background-color $color-primary
+    color $color-white
+    border-color $color-primary
+  &.button-circled
+    width 40px
+    height 40px
+    border-radius(50%)

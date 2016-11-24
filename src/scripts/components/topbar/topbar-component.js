@@ -10,14 +10,11 @@
 
   app.component('topbar', {
     templateUrl: 'components/topbar/topbar-template.html',
+    controller: ['$window', topbarController],
+    transclude: true,
     bindings: {
       title: '@'
-    },
-    transclude: {
-      'topbarContentLeft': '?topbarContentLeft',
-      'topbarContentRight': '?topbarContentRight'
-    },
-    controller: ['$window', topbarController]
+    }
   });
 
 }());

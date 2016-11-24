@@ -1,6 +1,15 @@
 @require '_variables'
 @require '_mixins'
 
+topbar
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index $layer-low
+  & + viewport
+    margin-top 57px
+
 .topbar-container
   background-color $color-ruby
 

@@ -1,0 +1,22 @@
+@require '_mixins'
+
+.input-container
+  position relative
+  &.input-container-iconed
+    input[type=text]
+      padding-left 45px
+    & > icon > .icon,
+    .button
+      position absolute
+      top 50%
+    & > icon > .icon
+      left 15px
+      margin-top -12px
+      color $color-grey
+      font-size $font-size-xl
+    .button
+      right 10px
+      margin-top -20px
+  &.input-container-buttoned
+    input[type=text]
+      padding-right 55px

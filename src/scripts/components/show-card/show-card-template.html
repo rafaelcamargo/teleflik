@@ -1,0 +1,25 @@
+<card>
+  <div class="show-card-title-container">
+    <h2 ng-bind="$ctrl.show.title"></h2>
+  </div>
+  <div class="show-card-details-container">
+    <div class="show-card-details-item">
+      <icon data-icon="ion-calendar"></icon>
+      <span class="show-card-details-item-text"
+        ng-bind="$ctrl.show.date">
+      </span>
+    </div>
+    <div class="show-card-details-item">
+      <icon data-icon="ion-android-time"></icon>
+      <span class="show-card-details-item-text"
+        ng-bind="$ctrl.show.time">
+      </span>
+    </div>
+    <div class="show-card-details-item show-card-details-item-media">
+      <icon data-icon="ion-ios-monitor-outline"></icon>
+      <span class="show-card-details-item-text"
+        ng-bind="$ctrl.show.media">
+      </span>
+    </div>
+  </div>
+</card>

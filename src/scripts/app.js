@@ -33,6 +33,9 @@
     $stateProvider.state('home', {
       url: '/',
       templateUrl: getViewTemplateUrl('home')
+    }).state('interests', {
+      url: '/interests',
+      templateUrl: getViewTemplateUrl('interests')
     });
 
     $urlRouterProvider.otherwise('/');

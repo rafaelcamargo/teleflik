@@ -1,0 +1,45 @@
+@require '_variables'
+@require '_mixins'
+
+.show-card-title-container
+  h2
+    min-height 58px
+
+.show-card-details-container
+  position relative
+  margin-top 10px
+  clearfix()
+  .icon
+    position relative
+    top 1px
+    margin 0 2px
+    font-size $font-size-sm
+
+.show-card-details-item
+  float left
+  & + .show-card-details-item
+    &:not(.show-card-details-item-media)
+      margin-left 20px
+  &.show-card-details-item-media
+    position: absolute
+    top 0
+    padding-left 140px
+    width 100%
+    text-align right
+    box-sizing(border-box)
+    .show-card-details-item-text,
+    .icon
+      float right
+    .show-card-details-item-text
+      padding-right 5px
+      max-width 85%
+      text-transform uppercase
+      text-overflow ellipsis
+      overflow hidden
+      white-space nowrap
+      box-sizing(border-box)
+    .icon
+      font-size $font-size-md
+
+.show-card-details-item-text
+  font-size $font-size-xxs
