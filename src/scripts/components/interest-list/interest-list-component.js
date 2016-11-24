@@ -1,27 +1,25 @@
 (function(){
 
-  function interestListController(){
+  function interestListController($scope, interestService){
     var _public = this;
 
-    _public.interests = [
-      {
-        id: 1,
-        keyword: 'Skank'
-      },
-      {
-        id: 2,
-        keyword: 'Oasis'
-      },
-      {
-        id: 3,
-        keyword: 'Pearl Jam'
-      },
-    ];
+    $scope.$on('interest list outdated', updateList);
+    $scope.$on('interest list item removed', getList);
+
+    function getList(){
+      _public.interests = interestService.getAll();
+    }
+
+    function updateList(evt, interest){
+      _public.interests.unshift(interest);
+    }
+
+    getList();
   }
 
   app.component('interestList', {
     templateUrl: 'components/interest-list/interest-list-template.html',
-    controller: [interestListController]
+    controller: ['$scope', 'interestService', interestListController]
   });
 
 }());
