@@ -9,6 +9,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "angular-resource": "^1.5.9",
     "ggrid": "^1.0.0"
   },
   "devDependencies": {

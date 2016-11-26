@@ -17,7 +17,11 @@
     "scripts": {
       "source": {
         "root": "src/scripts",
-        "files": "src/scripts/**/*.js"
+        "files": [
+          "src/scripts/**/*.js",
+          "!src/scripts/env.js",
+          "!src/scripts/metrics.js"
+        ]
       },
       "spec": {
         "root": "spec",
@@ -26,7 +30,8 @@
       },
       "vendor": {
         "files": [
-          "node_modules/ionic/js/ionic.bundle.min.js"
+          "node_modules/ionic/js/ionic.bundle.min.js",
+          "node_modules/angular-resource/angular-resource.min.js"
         ]
       },
       "dist": {

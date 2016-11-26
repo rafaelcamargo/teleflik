@@ -1,6 +1,6 @@
 (function(){
 
-  function showCardListController(){
+  function showCardListController(showsService){
     var _public = this;
 
     _public.shows = [
@@ -29,11 +29,18 @@
         media: 'Globonews'
       }
     ];
+
+    showsService.getInteresting()
+      .then(function(response){
+        console.log(response);
+      }, function(error){
+        console.log(error);
+      });
   }
 
   app.component('showCardList', {
     templateUrl: 'components/show-card-list/show-card-list-template.html',
-    controller: showCardListController
+    controller: ['showsService', showCardListController]
   });
 
 }());

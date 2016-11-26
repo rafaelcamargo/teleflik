@@ -4,7 +4,8 @@
 
   window.app = angular.module('teleflik', [
     'ionic',
-    'templates'
+    'templates',
+    'ngResource'
   ])
 
   .run(function($ionicPlatform) {
