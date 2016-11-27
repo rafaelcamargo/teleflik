@@ -17,8 +17,8 @@
     getList();
   }
 
-  app.component('interestList', {
-    templateUrl: 'components/interest-list/interest-list-template.html',
+  app.component('interestCardList', {
+    templateUrl: 'components/interest-card-list/interest-card-list-template.html',
     controller: ['$scope', 'interestService', interestListController]
   });
 

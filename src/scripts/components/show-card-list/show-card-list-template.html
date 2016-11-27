@@ -1,4 +1,40 @@
-<div class="card-list-container">
+<div class="card-list-container show-card-list-container">
+  <div class="show-card-list-messages-container">
+    <div class="show-card-list-messages-no-interests-found"
+      ng-show="!$ctrl.interests.length">
+      <card>
+        <div class="show-card-list-messages-icon-container">
+          <icon data-icon="ion-wand"></icon><br/>
+        </div>
+        <div class="show-card-list-messages-text-container">
+          A mágica só acontece quando você nos diz o que gosta.<br/>
+          Para adicionar interesses, use o sinal de mais acima.
+        </div>
+      </card>
+    </div>
+    <div class="show-card-list-messages-results-found"
+      ng-show="$ctrl.shows.length">
+      <div class="show-card-list-messages-icon-container">
+        <icon data-icon="ion-flag"></icon><br/>
+      </div>
+      <div class="show-card-list-messages-text-container">
+        Yup! <strong ng-bind="$ctrl.shows.length"></strong>
+        <span ng-bind="$ctrl.results.label"></span>
+      </div>
+    </div>
+    <div class="show-card-list-messages-no-results-found"
+      ng-show="!$ctrl.shows">
+      <div class="show-card-list-messages-icon-container">
+        <icon data-icon="ion-help-buoy"></icon><br/>
+      </div>
+      <div class="show-card-list-messages-text-container">
+        Nenhum programa encontrado.<br/>
+        <a class="button button-primary" ui-sref="interests">
+          Adicionar mais interesses
+        </a>
+      </div>
+    </div>
+  </div>
   <ul class="card-list">
     <li ng-repeat="show in $ctrl.shows">
       <show-card data-show="show"></show-card>

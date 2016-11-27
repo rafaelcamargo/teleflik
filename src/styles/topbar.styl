@@ -6,16 +6,20 @@ topbar
   top 0
   left 0
   right 0
+  background-color $color-ruby
   z-index $layer-low
   & + viewport
     margin-top 57px
 
+.topbar-container,
+.topbar-content
+  margin 0 auto
+
 .topbar-container
-  background-color $color-ruby
+  max-width 600px
 
 .topbar-content
   position relative
-  margin 0 auto
   padding 16px 0
   width 90%
   color $color-white

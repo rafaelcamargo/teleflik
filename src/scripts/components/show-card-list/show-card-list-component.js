@@ -1,46 +1,40 @@
 (function(){
 
-  function showCardListController(showsService){
+  function showCardListController(interestService, showsService){
     var _public = this;
 
-    _public.shows = [
-      {
-        title: 'Cidade de Deus',
-        date: '26/11',
-        time: '21:20',
-        media: 'Cinemax'
-      },
-      {
-        title: 'Manhattan Connection',
-        date: '27/11',
-        time: '23:00',
-        media: 'Globonews'
-      },
-      {
-        title: 'Papo de Segunda',
-        date: '28/11',
-        time: '20:00',
-        media: 'GNT'
-      },
-      {
-        title: 'Conexão Roberto D\'ávila',
-        date: '30/11',
-        time: '00:00',
-        media: 'Globonews'
-      }
-    ];
+    _public.interests = interestService.getAll();
 
-    showsService.getInteresting()
-      .then(function(response){
-        console.log(response);
-      }, function(error){
-        console.log(error);
-      });
+    _public.shows = [];
+
+    _public.results = {
+      label: ''
+    };
+
+    function builtResultsLabel(shows){
+      _public.results.label = 'interesse à vista';
+      if(shows.length > 1)
+        _public.results.label = 'interesses à vista';
+    }
+
+    function onGettingInterestingShows(response){
+      _public.shows = response.length ? response : false;
+      if(_public.shows)
+        builtResultsLabel(_public.shows);
+    }
+
+    if(_public.interests.length)
+      showsService.getInteresting(_public.interests)
+        .then(function(response){
+          onGettingInterestingShows(response);
+        }, function(error){
+          console.log(error);
+        });
   }
 
   app.component('showCardList', {
     templateUrl: 'components/show-card-list/show-card-list-template.html',
-    controller: ['showsService', showCardListController]
+    controller: ['interestService', 'showsService', showCardListController]
   });
 
 }());

@@ -27,6 +27,10 @@
           setInterests(interests);
       };
 
+      _public.hasInterests = function(){
+        return this.getAll().length;
+      };
+
       function getInterests(){
         return JSON.parse(storageService.get(INTERESTS_STORAGE_KEY)) || [];
       }
