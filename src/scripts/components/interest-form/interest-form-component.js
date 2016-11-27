@@ -6,13 +6,12 @@
     _public.interest = {};
 
     _public.add = function(){
-      var interest = _public.interest;
-      _public.interest.id = new Date().getTime();
-
-      if(_public.interest.keyword)
+      var keyword = _public.interest.keyword;
+      if(keyword && keyword.trim()){
+        _public.interest.id = new Date().getTime();
         interestService.add(_public.interest);
-
-      $scope.$emit('interest added', _public.interest);
+        $scope.$emit('interest added', _public.interest);
+      }
       _public.interest = {};
     };
   }

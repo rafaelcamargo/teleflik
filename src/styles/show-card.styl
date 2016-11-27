@@ -19,11 +19,11 @@
   float left
   & + .show-card-details-item
     &:not(.show-card-details-item-media)
-      margin-left 20px
+      margin-left 15px
   &.show-card-details-item-media
     position: absolute
     top 0
-    padding-left 140px
+    padding-left 120px
     width 100%
     text-align right
     box-sizing(border-box)
@@ -31,7 +31,7 @@
     .icon
       float right
     .show-card-details-item-text
-      padding-right 5px
+      padding-right 25px
       max-width 85%
       text-transform uppercase
       text-overflow ellipsis
@@ -39,6 +39,9 @@
       white-space nowrap
       box-sizing(border-box)
     .icon
+      position absolute
+      top 0
+      right 0
       font-size $font-size-md
 
 .show-card-details-item-text

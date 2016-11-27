@@ -7,20 +7,31 @@
 
     _public.shows = [];
 
-    _public.results = {
-      label: ''
-    };
+    _public.results = null;
 
-    function builtResultsLabel(shows){
-      _public.results.label = 'interesse à vista';
-      if(shows.length > 1)
-        _public.results.label = 'interesses à vista';
+    _public.error = null;
+
+    function builtResults(shows){
+      var baseLabel = shows.length > 1 ? 'interesses' : 'interesse';
+      return {
+        label: baseLabel + ' à vista.'
+      };
     }
 
     function onGettingInterestingShows(response){
       _public.shows = response.length ? response : false;
       if(_public.shows)
-        builtResultsLabel(_public.shows);
+        _public.results = builtResults(_public.shows);
+    }
+
+    function onGettingError(error){
+      _public.error = buildError(error);
+    }
+
+    function buildError(error){
+      if(error == 'offline')
+        return 'Parece que você está sem internet.';
+      return 'O servidor parece estar com a àgua no pescoço. Tente novamente mais tarde.';
     }
 
     if(_public.interests.length)
@@ -28,7 +39,7 @@
         .then(function(response){
           onGettingInterestingShows(response);
         }, function(error){
-          console.log(error);
+          onGettingError(error);
         });
   }
 

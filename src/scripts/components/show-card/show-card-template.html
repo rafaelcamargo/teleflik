@@ -18,7 +18,8 @@
     <div class="show-card-details-item show-card-details-item-media">
       <icon data-icon="ion-ios-monitor-outline"></icon>
       <span class="show-card-details-item-text"
-        ng-bind="$ctrl.show.media">
+        ng-click="$ctrl.showMediaDetails($ctrl.show.media)"
+        ng-bind="$ctrl.show.media.name">
       </span>
     </div>
   </div>

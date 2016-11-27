@@ -68,7 +68,7 @@
           title: show.titulo,
           date: formatInterestingShowDate(show.dh_inicio),
           time: formatInterestingShowTime(show.dh_inicio),
-          media: getChannel(show, channels).name
+          media: getChannel(show, channels)
         };
       }
 

@@ -25,13 +25,22 @@
     <div class="show-card-list-messages-no-results-found"
       ng-show="!$ctrl.shows">
       <div class="show-card-list-messages-icon-container">
-        <icon data-icon="ion-help-buoy"></icon><br/>
+        <icon data-icon="ion-map"></icon><br/>
       </div>
       <div class="show-card-list-messages-text-container">
-        Nenhum programa encontrado.<br/>
+        Nada interessante pela frente.<br/>
         <a class="button button-primary" ui-sref="interests">
           Adicionar mais interesses
         </a>
+      </div>
+    </div>
+    <div class="show-card-list-messages-server-error"
+      ng-show="$ctrl.error">
+      <div class="show-card-list-messages-icon-container">
+        <icon data-icon="ion-help-buoy"></icon><br/>
+      </div>
+      <div class="show-card-list-messages-text-container"
+        ng-bind="$ctrl.error">
       </div>
     </div>
   </div>

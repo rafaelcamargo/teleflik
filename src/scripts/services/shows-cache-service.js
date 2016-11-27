@@ -2,10 +2,11 @@
 
   app.service('showsCacheService', [
     '$q',
+    'internetService',
     'channelResource',
     'showResource',
     'storageService',
-    function($q, channelResource, showResource, storageService){
+    function($q, internetService, channelResource, showResource, storageService){
 
       var _public = {};
 
@@ -15,6 +16,9 @@
 
       _public.get = function(){
         return $q(function(resolve, reject){
+          if(!internetService.isOnline())
+            reject('offline');
+
           $q.all(buildRequests())
               .then(function(responses){
                 cacheResponses(responses);
