@@ -4,16 +4,15 @@
 
   app.service('showsService', [
     '$q',
-    'channelResource',
-    'showResource',
+    'showsCacheService',
     'interestService',
-    function($q, channelResource, showResource, interestService){
+    function($q, showsCacheService, interestService){
 
       var _public = {};
 
       _public.getInteresting = function(interests){
-        return $q(function(resolve, reject) {
-          $q.all(buildRequests())
+        return $q(function(resolve, reject){
+          showsCacheService.get()
             .then(function(responses){
               var interestingShows = filterShowsByInterests(responses, interests);
               resolve(interestingShows);
@@ -22,13 +21,6 @@
             });
         });
       };
-
-      function buildRequests(){
-        return [
-          channelResource.get().$promise,
-          showResource.get().$promise
-        ];
-      }
 
       function filterShowsByInterests(responses, interests){
         var interestingShows = [];
