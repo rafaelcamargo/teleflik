@@ -158,6 +158,17 @@ var config = {
         src: [project.paths.styles.dist.bundle],
         dest: project.paths.styles.dist.root
       }]
+    },
+    env: {
+      options: {
+        patterns: [{match: 'environment', replacement: 'prod'}]
+      },
+      files: [{
+        expand: true,
+        flatten: true,
+        src: [project.paths.scripts.dist.config.bundle],
+        dest: project.paths.scripts.dist.config.root
+      }]
     }
   },
   'karma': {
@@ -245,6 +256,7 @@ module.exports = function(grunt){
     'replace:appIndexProd',
     'replace:webIndexProd',
     'replace:style',
+    'replace:env',
     'uglify:config',
     'uglify:source'
   ]);
