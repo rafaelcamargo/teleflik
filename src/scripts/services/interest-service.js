@@ -1,8 +1,10 @@
 (function(){
 
   app.service('interestService', [
+    'TRACKS',
+    'trackService',
     'storageService',
-    function(storageService){
+    function(TRACKS, trackService, storageService){
 
       var INTERESTS_STORAGE_KEY = 'interests';
 
@@ -12,6 +14,9 @@
         var interests = getInterests();
         interests.push(interest);
         setInterests(interests);
+        trackService.track(TRACKS.interests.added, {
+          interestKeyword: interest.keyword
+        });
       };
 
       _public.getAll = function(){
@@ -40,14 +45,21 @@
       }
 
       function removeInterest(interest, interests){
-        for (var i = 0; i < interests.length; i++)
-          if(interests[i].id === interest.id)
+        for (var i = 0; i < interests.length; i++){
+          if(interests[i].id === interest.id){
             interests.splice(i, 1);
+            trackService.track(TRACKS.interests.removed, {
+              interestKeyword: interest.keyword,
+              interestAddedOn: new Date(interest.id).toString()
+            });
+          }
+        }
         return interests;
       }
 
       function removeAll(){
         storageService.remove(INTERESTS_STORAGE_KEY);
+        trackService.track(TRACKS.interests.removedAll);
       }
 
       return _public;

@@ -15,12 +15,15 @@
       }
     },
     "scripts": {
+      "config": {
+        "root": "src/scripts/config",
+        "files": "src/scripts/config/**/*.js"
+      },
       "source": {
         "root": "src/scripts",
         "files": [
           "src/scripts/**/*.js",
-          "!src/scripts/env.js",
-          "!src/scripts/metrics.js"
+          "!src/scripts/config/**.*js"
         ]
       },
       "spec": {
@@ -36,6 +39,10 @@
       },
       "dist": {
         "bundle": "www/scripts/bundle.min.js",
+        "config": {
+          "root": "www/scripts/config",
+          "bundle": "www/scripts/config/config.min.js"
+        },
         "vendor": {
           "root": "www/vendor/scripts",
           "bundle": "www/vendor/scripts/vendor.min.js"

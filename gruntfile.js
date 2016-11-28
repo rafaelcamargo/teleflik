@@ -5,6 +5,10 @@ var config = {
     source: project.paths.scripts.source.files
   },
   'concat': {
+    config: {
+      src: project.paths.scripts.config.files,
+      dest: project.paths.scripts.dist.config.bundle
+    },
     source: {
       options: {
         sourceMap: true
@@ -128,6 +132,10 @@ var config = {
   'watch': {
     options: {
       livereload: true,
+    },
+    config: {
+      files: project.paths.scripts.config.files,
+      tasks: ['concat:config']
     },
     scripts: {
       files: project.paths.scripts.source.files,
