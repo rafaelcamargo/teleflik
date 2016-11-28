@@ -1,5 +1,15 @@
 var fs = require('fs');
 var project = JSON.parse(fs.readFileSync('./project.json', 'utf8'));
+
+var getIndexFiles = function(indexType){
+  return [{
+    expand: true,
+    flatten: true,
+    src: [project.paths.index[indexType].source],
+    dest: project.paths.index[indexType].dest
+  }];
+}
+
 var config = {
   'jshint': {
     source: project.paths.scripts.source.files
@@ -34,6 +44,16 @@ var config = {
   'uglify': {
     options: {
       mangle: false
+    },
+    config: {
+      files: {
+        [project.paths.scripts.dist.config.bundle]: project.paths.scripts.dist.config.bundle
+      }
+    },
+    source: {
+      files: {
+        [project.paths.scripts.dist.bundle]: project.paths.scripts.dist.bundle
+      }
     },
     vendor: {
       files: {
@@ -86,26 +106,57 @@ var config = {
     }
   },
   'replace': {
-    appIndex: {
+    appIndexDev: {
       options: {
-        patterns: [{match: 'distFilesPath/', replacement: ''}]
+        patterns: [
+          {match: 'distFilesPath/', replacement: ''},
+          {match: 'cordova', replacement: ''},
+          {match: 'livereload', replacement: '<script src="//localhost:35729/livereload.js"></script>'}
+        ]
       },
-      files: [{
-        expand: true,
-        flatten: true,
-        src: [project.paths.index.app.source],
-        dest: project.paths.index.app.dest
-      }]
+      files: getIndexFiles('app')
     },
-    webIndex: {
+    appIndexProd: {
       options: {
-        patterns: [{match: 'distFilesPath/', replacement: 'www/'}]
+        patterns: [
+          {match: 'distFilesPath/', replacement: ''},
+          {match: 'timestamp', replacement: new Date().getTime()},
+          {match: 'cordova', replacement: '<script src="cordova.js"></script>'},
+          {match: 'livereload', replacement: ''}
+        ]
+      },
+      files: getIndexFiles('app')
+    },
+    webIndexDev: {
+      options: {
+        patterns: [
+          {match: 'distFilesPath/', replacement: 'www/'},
+          {match: 'cordova', replacement: ''},
+          {match: 'livereload', replacement: '<script src="//localhost:35729/livereload.js"></script>'}
+        ]
+      },
+      files: getIndexFiles('web')
+    },
+    webIndexProd: {
+      options: {
+        patterns: [
+          {match: 'distFilesPath/', replacement: 'www/'},
+          {match: 'timestamp', replacement: new Date().getTime()},
+          {match: 'cordova', replacement: ''},
+          {match: 'livereload', replacement: ''}
+        ]
+      },
+      files: getIndexFiles('web')
+    },
+    style: {
+      options: {
+        patterns: [{match: 'timestamp', replacement: new Date().getTime()}]
       },
       files: [{
         expand: true,
         flatten: true,
-        src: [project.paths.index.web.source],
-        dest: project.paths.index.web.dest
+        src: [project.paths.styles.dist.bundle],
+        dest: project.paths.styles.dist.root
       }]
     }
   },
@@ -164,7 +215,7 @@ var config = {
     },
     replace: {
       files: project.paths.index.app.source,
-      tasks: ['replace']
+      tasks: ['replace:appIndexDev', 'replace:webIndexDev']
     }
   }
 };
@@ -174,7 +225,6 @@ module.exports = function(grunt){
   grunt.initConfig(config);
   grunt.registerTask('build', [
     'copy',
-    'replace',
     'html2js',
     'jshint',
     'concat',
@@ -185,7 +235,17 @@ module.exports = function(grunt){
   ]);
   grunt.registerTask('start', [
     'build',
+    'replace:appIndexDev',
+    'replace:webIndexDev',
     'http-server',
     'watch'
+  ]);
+  grunt.registerTask('deploy', [
+    'build',
+    'replace:appIndexProd',
+    'replace:webIndexProd',
+    'replace:style',
+    'uglify:config',
+    'uglify:source'
   ]);
 };
