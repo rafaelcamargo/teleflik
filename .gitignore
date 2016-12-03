@@ -154,3 +154,7 @@ bower_components
 .bower-cache
 .bower-registry
 .bower-tmp
+
+### Platform Built Files ###
+platforms/android/assets/www/
+platforms/ios/www/
