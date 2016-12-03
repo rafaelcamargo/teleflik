@@ -52,9 +52,15 @@
         for (var i = 0; i < interests.length; i++){
           var showTitle = lowercasify(show.titulo);
           var interestKeyword = lowercasify(interests[i].keyword);
-          if(showTitle.indexOf(interestKeyword) > -1)
+          if(matchesInterest(interestKeyword, showTitle))
             return true;
         }
+      }
+
+      function matchesInterest(interestKeyword, showTitle){
+        var startOfTitle = new RegExp('^' + interestKeyword);
+        var middleOfTitle = new RegExp('\\s' + interestKeyword);
+        return startOfTitle.test(showTitle) || middleOfTitle.test(showTitle);
       }
 
       function wasShowAlreadyFiltered(show, interestingShows){
