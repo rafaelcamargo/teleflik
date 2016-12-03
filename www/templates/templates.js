@@ -179,6 +179,7 @@ angular.module("components/topbar/topbar-template.html", []).run(["$templateCach
     "<div class=\"topbar-container\">\n" +
     "  <div class=\"topbar-content\" ng-if=\"$ctrl.title\">\n" +
     "    <div class=\"topbar-back-trigger\" ng-click=\"$ctrl.back()\">\n" +
+    "      <icon data-icon=\"ion-ios-arrow-back\"></icon>\n" +
     "      <icon data-icon=\"ion-android-arrow-back\"></icon>\n" +
     "    </div>\n" +
     "    <h1 ng-bind=\"$ctrl.title\"></h1>\n" +
