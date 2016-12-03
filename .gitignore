@@ -155,6 +155,9 @@ bower_components
 .bower-registry
 .bower-tmp
 
+### Dist files ###
+bundle.min.js.map
+
 ### Platform Built Files ###
 platforms/android/assets/www/
 platforms/ios/www/

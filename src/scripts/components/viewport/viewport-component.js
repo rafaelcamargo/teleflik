@@ -9,8 +9,13 @@
 
     function setViewportHeight(){
       _public.style = {
-        height: ($window.innerHeight-50) + 'px'
+        height: getViewportHeight()
       };
+    }
+
+    function getViewportHeight(){
+      var topbarHeight = ionic.Platform.isIOS() ? 70 : 50;
+      return ($window.innerHeight-topbarHeight) + 'px';
     }
 
     function refreshViewportHeight(){
