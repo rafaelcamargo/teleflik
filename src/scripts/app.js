@@ -5,7 +5,9 @@
   window.app = angular.module('teleflik', [
     'ionic',
     'templates',
-    'ngResource'
+    'ngResource',
+    'angulartics',
+    'angulartics.google.analytics'
   ])
 
   .run(function($ionicPlatform) {

@@ -34,7 +34,9 @@
       "vendor": {
         "files": [
           "node_modules/ionic/js/ionic.bundle.min.js",
-          "node_modules/angular-resource/angular-resource.min.js"
+          "node_modules/angular-resource/angular-resource.min.js",
+          "node_modules/angulartics/dist/angulartics.min.js",
+          "node_modules/angulartics-google-analytics/dist/angulartics-ga.min.js"
         ]
       },
       "dist": {
