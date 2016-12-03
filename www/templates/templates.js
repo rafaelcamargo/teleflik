@@ -117,7 +117,7 @@ angular.module("components/show-card-list/show-card-list-template.html", []).run
     "        <icon data-icon=\"ion-map\"></icon><br/>\n" +
     "      </div>\n" +
     "      <div class=\"show-card-list-messages-text-container\">\n" +
-    "        Nada interessante pela frente.<br/>\n" +
+    "        Nada interessante nas próximas 24h.<br/>\n" +
     "        <a class=\"button button-primary\" href=\"javascript:void(0)\"\n" +
     "          ng-click=\"$ctrl.goToInterestsView()\">\n" +
     "          Adicionar mais interesses\n" +
