@@ -149,6 +149,12 @@ angular.module("components/show-card/show-card-template.html", []).run(["$templa
     "  <div class=\"show-card-title-container\">\n" +
     "    <h2 ng-bind=\"$ctrl.show.title\"></h2>\n" +
     "  </div>\n" +
+    "  <div class=\"show-card-interest-container\">\n" +
+    "    Relacionado a\n" +
+    "    <span class=\"show-card-interest-related\"\n" +
+    "      ng-bind=\"$ctrl.show.interest\">\n" +
+    "    </span>\n" +
+    "  </div>\n" +
     "  <div class=\"show-card-details-container\">\n" +
     "    <div class=\"show-card-details-item\">\n" +
     "      <icon data-icon=\"ion-calendar\"></icon>\n" +
