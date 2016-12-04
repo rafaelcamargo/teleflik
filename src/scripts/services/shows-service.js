@@ -28,8 +28,9 @@
         var shows = parseResponse(responses[1]);
         for (var i = 0; i < shows.length; i++) {
           var show = shows[i];
-          if(isInterestingShow(show, interests) && !wasShowAlreadyFiltered(show, interestingShows)){
-            show = formatInterestingShow(show, channels);
+          var relatedInterest = lookForRelatedInterest(show, interests);
+          if(relatedInterest && !wasShowAlreadyFiltered(show, interestingShows)){
+            show = formatInterestingShow(show, channels, relatedInterest);
             interestingShows.push(show);
           }
         }
@@ -48,12 +49,12 @@
         return indexedChannels;
       }
 
-      function isInterestingShow(show, interests){
+      function lookForRelatedInterest(show, interests){
         for (var i = 0; i < interests.length; i++){
           var showTitle = lowercasify(show.titulo);
           var interestKeyword = lowercasify(interests[i].keyword);
           if(matchesInterest(interestKeyword, showTitle))
-            return true;
+            return interestKeyword;
         }
       }
 
@@ -69,12 +70,13 @@
             return true;
       }
 
-      function formatInterestingShow(show, channels){
+      function formatInterestingShow(show, channels, interest){
         return {
           title: show.titulo,
           date: formatInterestingShowDate(show.dh_inicio),
           time: formatInterestingShowTime(show.dh_inicio),
-          media: getChannel(show, channels)
+          media: getChannel(show, channels),
+          interest: interest
         };
       }
 
