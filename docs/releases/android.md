@@ -7,3 +7,5 @@
 5. Go to the built *apk* directory: `cd platforms/android/build/outputs/apk/`
 6. Zip the built package and make it ready to publishing: `~/Library/Android/sdk/build-tools/19.1.0/zipalign -v 4 android-release-unsigned.apk teleflik.apk`
 7. Go to Google Play Developers Console and upload new apk version: https://play.google.com/apps/publish/
+
+Useful resource: https://ionicframework.com/docs/guide/publishing.html
