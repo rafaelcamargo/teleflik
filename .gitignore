@@ -157,10 +157,3 @@ bower_components
 
 ### Dist files ###
 bundle.min.js.map
-
-### Platform Built Files ###
-platforms/android/CordovaLib/build/
-platforms/android/res/
-platforms/ios/Teleflik/Images.xcassets/
-platforms/android/assets/www/
-platforms/ios/www/
