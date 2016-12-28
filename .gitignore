@@ -155,5 +155,15 @@ bower_components
 .bower-registry
 .bower-tmp
 
+
 ### Dist files ###
 bundle.min.js.map
+
+
+### Platforms Built Files ###
+platforms/android/AndroidManifest.xml
+platforms/android/CordovaLib/build/
+platforms/android/res/
+platforms/android/assets/www/
+platforms/ios/www/
+platforms/ios/Teleflik/
