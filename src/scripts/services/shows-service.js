@@ -4,8 +4,9 @@
 
   app.service('showsService', [
     '$q',
+    '$filter',
     'showsCacheService',
-    function($q, showsCacheService){
+    function($q, $filter, showsCacheService){
 
       var _public = {};
 
@@ -34,7 +35,7 @@
             interestingShows.push(show);
           }
         }
-        return interestingShows;
+        return $filter('orderBy')(interestingShows, 'timestamp');
       };
 
       function parseResponse(response){
@@ -76,6 +77,7 @@
           title: show.titulo,
           date: formatInterestingShowDate(date),
           time: formatInterestingShowTime(date),
+          timestamp: date.getTime(),
           media: getChannel(show, channels),
           interest: interest
         };
