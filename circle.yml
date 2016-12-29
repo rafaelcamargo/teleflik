@@ -1,0 +1,16 @@
+machine:
+  node:
+    version: 4.5.0
+
+dependencies:
+  override:
+    - npm install -g grunt karma-cli
+    - npm install
+
+compile:
+  override:
+    - grunt build
+
+test:
+  override:
+    - karma start
