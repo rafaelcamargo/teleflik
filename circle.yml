@@ -9,7 +9,7 @@ dependencies:
 
 compile:
   override:
-    - grunt buil
+    - grunt build
 
 test:
   override:
