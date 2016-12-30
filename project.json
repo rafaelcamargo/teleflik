@@ -26,11 +26,6 @@
           "!src/scripts/config/**.*js"
         ]
       },
-      "spec": {
-        "root": "spec",
-        "files": "spec/**/*-spec.js",
-        "config": "karma.conf.js"
-      },
       "vendor": {
         "files": [
           "node_modules/ionic/js/ionic.bundle.min.js",
@@ -50,6 +45,14 @@
           "bundle": "www/vendor/scripts/vendor.min.js"
         }
       }
+    },
+    "spec": {
+      "root": "spec",
+      "files": [
+        "node_modules/angular-mocks/angular-mocks.js",
+        "spec/**/*-spec.js"
+      ],
+      "config": "karma.conf.js"
     },
     "styles": {
       "source": {

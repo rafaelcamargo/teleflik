@@ -173,7 +173,7 @@ var config = {
   },
   'karma': {
     unit: {
-      configFile: project.paths.scripts.spec.config
+      configFile: project.paths.spec.config
     }
   },
   'http-server': {

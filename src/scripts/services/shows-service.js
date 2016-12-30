@@ -4,25 +4,26 @@
 
   app.service('showsService', [
     '$q',
+    '$filter',
     'showsCacheService',
-    'interestService',
-    function($q, showsCacheService, interestService){
+    function($q, $filter, showsCacheService){
 
       var _public = {};
 
       _public.getInteresting = function(interests){
-        return $q(function(resolve, reject){
-          showsCacheService.get()
-            .then(function(responses){
-              var interestingShows = filterShowsByInterests(responses, interests);
-              resolve(interestingShows);
-            }, function(error){
-              reject(error);
-            });
+        var deferred = $q.defer();
+
+        showsCacheService.get().then(function(responses){
+          var interestingShows = _public.filterShowsByInterests(responses, interests);
+          deferred.resolve(interestingShows);
+        }, function(error){
+          deferred.reject(error);
         });
+
+        return deferred.promise;
       };
 
-      function filterShowsByInterests(responses, interests){
+      _public.filterShowsByInterests = function(responses, interests){
         var interestingShows = [];
         var channels = indexChannelsById(parseResponse(responses[0]));
         var shows = parseResponse(responses[1]);
@@ -34,8 +35,8 @@
             interestingShows.push(show);
           }
         }
-        return interestingShows;
-      }
+        return $filter('orderBy')(interestingShows, 'timestamp');
+      };
 
       function parseResponse(response){
         var parsedResponse = JSON.parse(response.content);
@@ -71,24 +72,38 @@
       }
 
       function formatInterestingShow(show, channels, interest){
+        var date = buildDate(show.dh_inicio);
         return {
           title: show.titulo,
-          date: formatInterestingShowDate(show.dh_inicio),
-          time: formatInterestingShowTime(show.dh_inicio),
+          date: formatInterestingShowDate(date),
+          time: formatInterestingShowTime(date),
+          timestamp: date.getTime(),
           media: getChannel(show, channels),
           interest: interest
         };
       }
 
-      function formatInterestingShowDate(dateISOString){
-        var date = new Date(dateISOString);
+      function buildDate(dateISOString){
+        var utcDate = new Date(dateISOString);
+        return getDateWithoutZoneTime(utcDate);
+      }
+
+      function getDateWithoutZoneTime(date){
+        var year = date.getUTCFullYear();
+        var month = date.getUTCMonth();
+        var day = date.getUTCDate();
+        var hours = date.getUTCHours();
+        var minutes = date.getUTCMinutes();
+        return new Date(year, month, day, hours, minutes, 0, 0);
+      }
+
+      function formatInterestingShowDate(date){
         var day = appendLeadingZero(date.getDate());
         var month = appendLeadingZero(date.getMonth()+1);
         return [day, month].join('/');
       }
 
-      function formatInterestingShowTime(dateISOString){
-        var date = new Date(dateISOString);
+      function formatInterestingShowTime(date){
         var hours = appendLeadingZero(date.getHours());
         var minutes = appendLeadingZero(date.getMinutes());
         return [hours, minutes].join(':');
