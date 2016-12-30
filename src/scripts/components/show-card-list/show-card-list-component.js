@@ -49,7 +49,7 @@
     function buildError(error){
       if(error == 'offline')
         return 'Parece que você está sem internet.';
-      return 'O servidor parece estar com a àgua no pescoço. Tente novamente mais tarde.';
+      return 'O servidor parece estar com àgua no pescoço. Tente novamente mais tarde.';
     }
 
     if(_public.interests.length)

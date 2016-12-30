@@ -117,7 +117,7 @@ angular.module("components/show-card-list/show-card-list-template.html", []).run
     "        <icon data-icon=\"ion-map\"></icon><br/>\n" +
     "      </div>\n" +
     "      <div class=\"show-card-list-messages-text-container\">\n" +
-    "        Nada interessante pela frente.<br/>\n" +
+    "        Nada interessante nas próximas 24h.<br/>\n" +
     "        <a class=\"button button-primary\" href=\"javascript:void(0)\"\n" +
     "          ng-click=\"$ctrl.goToInterestsView()\">\n" +
     "          Adicionar mais interesses\n" +
@@ -149,6 +149,12 @@ angular.module("components/show-card/show-card-template.html", []).run(["$templa
     "  <div class=\"show-card-title-container\">\n" +
     "    <h2 ng-bind=\"$ctrl.show.title\"></h2>\n" +
     "  </div>\n" +
+    "  <div class=\"show-card-interest-container\">\n" +
+    "    Relacionado a\n" +
+    "    <span class=\"show-card-interest-related\"\n" +
+    "      ng-bind=\"$ctrl.show.interest\">\n" +
+    "    </span>\n" +
+    "  </div>\n" +
     "  <div class=\"show-card-details-container\">\n" +
     "    <div class=\"show-card-details-item\">\n" +
     "      <icon data-icon=\"ion-calendar\"></icon>\n" +
@@ -179,6 +185,7 @@ angular.module("components/topbar/topbar-template.html", []).run(["$templateCach
     "<div class=\"topbar-container\">\n" +
     "  <div class=\"topbar-content\" ng-if=\"$ctrl.title\">\n" +
     "    <div class=\"topbar-back-trigger\" ng-click=\"$ctrl.back()\">\n" +
+    "      <icon data-icon=\"ion-ios-arrow-back\"></icon>\n" +
     "      <icon data-icon=\"ion-android-arrow-back\"></icon>\n" +
     "    </div>\n" +
     "    <h1 ng-bind=\"$ctrl.title\"></h1>\n" +

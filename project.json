@@ -26,15 +26,12 @@
           "!src/scripts/config/**.*js"
         ]
       },
-      "spec": {
-        "root": "spec",
-        "files": "spec/**/*-spec.js",
-        "config": "karma.conf.js"
-      },
       "vendor": {
         "files": [
           "node_modules/ionic/js/ionic.bundle.min.js",
-          "node_modules/angular-resource/angular-resource.min.js"
+          "node_modules/angular-resource/angular-resource.min.js",
+          "node_modules/angulartics/dist/angulartics.min.js",
+          "node_modules/angulartics-google-analytics/dist/angulartics-ga.min.js"
         ]
       },
       "dist": {
@@ -48,6 +45,14 @@
           "bundle": "www/vendor/scripts/vendor.min.js"
         }
       }
+    },
+    "spec": {
+      "root": "spec",
+      "files": [
+        "node_modules/angular-mocks/angular-mocks.js",
+        "spec/**/*-spec.js"
+      ],
+      "config": "karma.conf.js"
     },
     "styles": {
       "source": {

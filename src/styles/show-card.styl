@@ -1,13 +1,19 @@
 @require '_variables'
 @require '_mixins'
 
-.show-card-title-container
-  h2
-    min-height 58px
+.show-card-interest-container
+  color $color-grey
+  font-size $font-size-xs
+
+.show-card-interest-related
+  font-weight bold
+
+.show-card-interest-container,
+.show-card-details-container
+  margin-top 10px
 
 .show-card-details-container
   position relative
-  margin-top 10px
   clearfix()
   .icon
     position relative
@@ -37,6 +43,7 @@
       text-overflow ellipsis
       overflow hidden
       white-space nowrap
+      cursor pointer
       box-sizing(border-box)
     .icon
       position absolute

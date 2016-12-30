@@ -7,7 +7,7 @@ topbar
   left 0
   right 0
   background-color $color-ruby
-  z-index $layer-low
+  z-index $layer-lowest
   & + viewport
     margin-top 58px
 
@@ -43,6 +43,8 @@ topbar
     position relative
     font-size $font-size-xl
     z-index $layer-lowest
+    &.ion-ios-arrow-back
+      display none
   .menu-container
     float right
     .menu-item-container
@@ -50,3 +52,7 @@ topbar
 
 .topbar-back-trigger
   float left
+  width 26px
+  cursor pointer
+  .icon
+    display block
