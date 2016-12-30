@@ -21,7 +21,11 @@
       }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
-        StatusBar.styleDefault();
+        if (ionic.Platform.isAndroid()) {
+          StatusBar.backgroundColorByHexString("#982B61");
+        } else {
+          StatusBar.styleLightContent();
+        }
       }
     });
   })
